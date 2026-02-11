@@ -1,5 +1,6 @@
 
 import time
+from compression import zstd
 # local imports
 from client import discourse
 from db import check_topic_updated, add_topic
@@ -22,10 +23,11 @@ def download_topic(topic_id):
     print(f"Topic {topic_id} {topic['error_type']} - skipping")
     return
   slug = topic['slug']
-  filename = f"{DOWNLOAD_DIR}/{topic_id}_{slug}.json" 
+  filename = f"{DOWNLOAD_DIR}/{topic_id}_{slug}.json.zstd"
   # write topic to file
-  with open(filename, "w", encoding="utf-8") as f:
-    f.write(str(topic))
+  with open(filename, "wb") as f:
+    compressed = zstd.compress(str(topic).encode('utf-8'), level=22)
+    f.write(compressed)
   # yes, update would be better, but i'm lazy
   add_topic(topic)
 

@@ -1,6 +1,5 @@
 # python
 __pycache__/
 # data
-data/topics/*.json
-data/topics.db
+data/
 .env
