@@ -1,0 +1,57 @@
+:root {
+  color-scheme: dark light;
+}
+html {
+  font-family: sans-serif, 'Noto Color Emoji';
+}
+body {
+  display: flex;
+  height: 100vh;
+}
+#sidebar {
+  width: 300px;
+  border-right: 1px solid #ccc;
+  padding: 1em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#main {
+  flex: 1;
+  padding: 1em;
+  overflow-y: scroll;
+}
+.topic-link {
+  display: block;
+  margin-bottom: 0.3em;
+  color: lightblue;
+  cursor: pointer;
+  text-decoration: none;
+  padding-left: 2em;
+  text-indent: -2em;
+}
+.topic-link:hover {
+  text-decoration: underline;
+}
+a.internal {
+  color: lightblue;
+}
+a, .external {
+  color: pink;
+}
+blockquote {
+  border-left: 4px solid #555;
+  background-color: #1f1f1f;
+  padding: 0.5em 1em;
+  margin: 0.5em 0;
+  border-radius: 4px;
+  font-style: italic;
+}
+.post {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1em;
+}
+
+/* hide lightbox meta, badges */
+div.lightbox-wrapper .meta, .badge-category__wrapper {
+  display: none;
+}

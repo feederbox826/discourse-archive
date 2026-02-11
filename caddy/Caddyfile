@@ -1,0 +1,12 @@
+:80 {
+	root * /usr/share/caddy
+    encode gzip zstd
+    file_server
+
+    handle_path /t/* {
+        rewrite * /browse/index.html
+        file_server
+    }
+    handle {
+        file_server
+    }

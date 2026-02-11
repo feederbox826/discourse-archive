@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discourse Archive Browser</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css');
+  @import url("/browse/index.css");
+</style>
+</head>
+<body>
+<div id="sidebar">
+  <h2>Topics</h2>
+  <div id="topicList"></div>
+</div>
+<div id="main">
+  <h2>Discourse Archive</h2>
+
+  <input id="topicSearch" placeholder="Search topics..." style="width:100%; padding:8px; margin-bottom:10px;">
+  <table id="topicTable" style="width:100%; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th data-sort="title">Title</th>
+        <th data-sort="last_updated">Last Updated</th>
+        <th data-sort="reply_count">Replies</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+<script src="/browse/utils.js"></script>
+<script src="/browse/emojimap.js"></script>
+<script src="/browse/load_topic.js"></script>
+<script src="/browse/load_index.js"></script>
+</body>
+</html>
