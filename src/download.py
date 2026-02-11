@@ -48,7 +48,7 @@ def download_topic(topic_id, print_param=False):
     topic = download_print_posts(topic)
   # write topic to file
   with open(filename, "w", encoding="utf-8") as f:
-    f.write(json.dumps(topic))
+    f.write(json.dumps(topic, separators=(',', ':')))
   # yes, update would be better, but i'm lazy
   add_topic(topic)
 
@@ -79,5 +79,5 @@ def test_latest(page=0):
 def create_index():
   index = get_index()
   with open(f"{DOWNLOAD_DIR}/index.json", "w") as f:
-    f.write(json.dumps(index))
+    f.write(json.dumps(index, separators=(',', ':')))
   # add last_updated timestamp
