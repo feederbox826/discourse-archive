@@ -1,0 +1,10 @@
+services:
+  discourse-archive:
+    image: ghcr.io/feederbox826/discourse-archive
+    restart: unless-stopped
+    read_only: true
+    environment:
+      - DOWNLOAD_DIR=/data/topics
+      - DOWNLOAD_DB=/data/topics.db
+    volumes:
+      - ./data:/data
