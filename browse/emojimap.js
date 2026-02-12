@@ -1,18 +1,25 @@
 // craft emoji map
-const emojiMap = new Map();
-const emojis = fetchJSON("https://raw.githubusercontent.com/discourse/discourse-emojis/refs/heads/main/dist/emojis.json")
-  .then(data => {
-    for (const emoji of data) {
-      emojiMap.set(emoji.name, emoji.code.split('-').map(cp => String.fromCodePoint(parseInt(cp, 16))).join(''));
+const versionExpected = "1";
+
+// validate version
+if (localStorage.getItem("emojiMapVersion") != versionExpected) {
+  // populate
+  localStorage.clear()
+  localStorage.setItem("emojiMapVersion", versionExpected);
+  // fetch and set
+  populateEmojiMap();
+}
+
+async function populateEmojiMap() {
+  const emojiBase = "https://raw.githubusercontent.com/discourse/discourse-emojis/refs/heads/main/dist/"
+  const emojis = await fetchJSON(emojiBase+"emojis.json")
+  const aliases = await fetchJSON(emojiBase+"aliases.json")
+  for (const emoji of emojis) {
+    const unicode = emoji.code.split('-').map(cp => String.fromCodePoint(parseInt(cp, 16))).join('');
+    localStorage.setItem(emoji.name, unicode);
+    // set aliases
+    for (const alias of aliases[emoji.name]) {
+      localStorage.setItem(alias, unicode);
     }
-  })
-// map aliases
-const aliases = fetchJSON("https://raw.githubusercontent.com/discourse/discourse-emojis/refs/heads/main/dist/aliases.json")
-  .then(data => {
-    for (const [name, aliases] of Object.entries(data)) {
-      const unicode = emojiMap.get(name);
-      for (const alias of aliases) {
-        emojiMap.set(alias, unicode);
-      }
-    }
-  })
+  }
+}

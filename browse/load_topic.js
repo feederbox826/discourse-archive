@@ -10,7 +10,7 @@ const postCleaner = (postElem) => {
   // replace img emoji with unicode
   postElem.querySelectorAll('img.emoji').forEach(img => {
     const name = img.getAttribute('alt').replace(/:/g, '');
-    const unicode = emojiMap.get(name);
+    const unicode = localStorage.getItem(name);
     if (unicode) {
       const textNode = document.createTextNode(unicode);
       img.parentNode.replaceChild(textNode, img);

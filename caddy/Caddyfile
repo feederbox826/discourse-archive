@@ -8,5 +8,6 @@
         file_server
     }
     handle {
+        redir / /browse/
         file_server
     }

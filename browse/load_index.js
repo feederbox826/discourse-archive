@@ -37,16 +37,14 @@ async function loadIndex() {
 const tableBody = document.querySelector('#topicTable tbody');
 function renderTable(data) {
   tableBody.innerHTML = '';
-
   data.forEach(([id, slug, title, lastUpdated, replies]) => {
     const tr = document.createElement('tr');
-
     tr.innerHTML = `
       <td>
         <a href="/t/${slug}/${id}">${title}</a>
       </td>
-      <td>${lastUpdated ? new Date(lastUpdated).toLocaleDateString() : '—'}</td>
-      <td>${replies ?? 0}</td>
+      <td>${new Date(lastUpdated).toLocaleDateString()}</td>
+      <td>${replies}</td>
     `;
     // add click listener to load topic
     tr.querySelector('a').addEventListener('click', async e => {
@@ -60,9 +58,7 @@ function renderTable(data) {
 // search
 document.getElementById('topicSearch').addEventListener('input', (e) => {
   const q = e.target.value.toLowerCase();
-  currentData = topicJSON.filter(([,,title]) =>
-    title.toLowerCase().includes(q)
-  );
+  currentData = topicJSON.filter(([,,title]) => title.toLowerCase().includes(q));
   renderTable(currentData);
 });
 // sorting
