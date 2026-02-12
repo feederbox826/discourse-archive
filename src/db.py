@@ -11,7 +11,7 @@ conn.commit()
 
 # create
 def create_tables():
-  cur.execute('''
+  cur.executescript('''
     CREATE TABLE IF NOT EXISTS topics (
       id INTEGER PRIMARY KEY,
       slug TEXT,
@@ -20,12 +20,12 @@ def create_tables():
       updated_at INTEGER,
       highest_post_number INTEGER
     );
-  ''')
-  conn.commit()
-  cur.executescript('''
     CREATE INDEX IF NOT EXISTS idx_topics_updated_at ON topics (updated_at);
     CREATE INDEX IF NOT EXISTS idx_topics_highest_post_number ON topics (highest_post_number);
   ''')
+  conn.commit()
+
+def commit():
   conn.commit()
 
 def close():
@@ -39,7 +39,6 @@ def add_topic(topic):
     INSERT OR REPLACE INTO topics (id, title, slug, created_at, updated_at, highest_post_number)
     VALUES (?, ?, ?, ?, ?, ?);
   ''', (topic['id'], topic['title'], topic['slug'], topic['created_at'], topic['last_posted_at'], topic['highest_post_number']))
-  conn.commit()
 
 def check_topic_updated(topic):
   cur.execute('''

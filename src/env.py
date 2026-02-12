@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from os import getenv
-URL_BASE = getenv("DISCOURSE_URL_BASE", "https://meta.discourse.org")
+URL_BASE = getenv("DISCOURSE_URL_BASE")
 # default to 5s, less than 0.3 will result in ratelimits
 # https://meta.discourse.org/t/78612
 RATELIMIT = max(float(getenv("DISCOURSE_RATELIMIT", "5")), 0.3)
