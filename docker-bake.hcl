@@ -20,6 +20,7 @@ target "alpine" {
   tags = [
     "ghcr.io/${OWNER_NAME}/${IMAGE_NAME}:latest",
   ]
+  platforms = ["linux/amd64", "linux/arm64"]
   cache-to = [{ type = "gha", mode = "max" }]
   cache-from = [{ type = "gha" }]
 }
