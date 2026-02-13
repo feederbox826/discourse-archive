@@ -12,7 +12,6 @@ def run():
   test_latest()
   create_index()
   commit_and_push()
-  close()
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
@@ -21,6 +20,7 @@ if __name__ == "__main__":
 
   if args.run_once:
     run()
+    close()
     sys.exit(0)
 
   scheduler = sched.scheduler(time.time, time.sleep)
