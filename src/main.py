@@ -31,4 +31,5 @@ if __name__ == "__main__":
     except Exception as e:
       print(f"Error: {e}", file=sys.stderr)
     scheduler.enter(3600, 1, run_and_reschedule)
+  scheduler.enter(0, 1, run_and_reschedule)
   scheduler.run()
