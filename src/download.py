@@ -54,6 +54,7 @@ def download_topic(topic_id, stream=False):
   add_topic(topic)
 
 def test_latest(page=0):
+  print("Checking latest topics...")
   topics = get_latest(page)
   # if all topics not latest, get next page
   outdated_count = 0

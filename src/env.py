@@ -3,6 +3,9 @@ load_dotenv()
 
 from os import getenv, makedirs
 URL_BASE = getenv("DISCOURSE_URL_BASE")
+# if no URL_BASE, quit
+if URL_BASE is None:
+  raise ValueError("DISCOURSE_URL_BASE environment variable is required")
 # default to 5s, less than 0.3 will result in ratelimits
 # https://meta.discourse.org/t/78612
 RATELIMIT = max(float(getenv("DISCOURSE_RATELIMIT", "5")), 0.3)
