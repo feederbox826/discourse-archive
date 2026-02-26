@@ -41,7 +41,7 @@ function renderTable(data) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td>
-        <a href="/t/${slug}/${id}">${title}</a>
+        <a class="topic-link" href="/t/${slug}/${id}">${title}</a>
       </td>
       <td>${new Date(lastUpdated).toLocaleDateString()}</td>
       <td>${replies}</td>
