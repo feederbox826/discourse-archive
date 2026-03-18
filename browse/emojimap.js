@@ -1,5 +1,5 @@
 // craft emoji map
-const versionExpected = "1";
+const versionExpected = "2";
 
 // validate version
 if (localStorage.getItem("emojiMapVersion") != versionExpected) {
@@ -18,7 +18,9 @@ async function populateEmojiMap() {
     const unicode = emoji.code.split('-').map(cp => String.fromCodePoint(parseInt(cp, 16))).join('');
     localStorage.setItem(emoji.name, unicode);
     // set aliases
-    for (const alias of aliases[emoji.name]) {
+    const aliasMatch = aliases?.[emoji.name]
+    if (!aliasMatch) continue;
+    for (const alias of aliasMatch) {
       localStorage.setItem(alias, unicode);
     }
   }
